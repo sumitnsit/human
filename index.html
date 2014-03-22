@@ -1,0 +1,118 @@
+<html>
+	<head>
+		
+		<style>
+			#container {
+				display: inline-block;
+				width: 49%;
+				height: 700px;
+				overflow: hidden;
+			}
+
+			#container2 {
+				display: inline-block;
+				width: 49%;
+				height: 700px;
+				overflow: hidden;
+				background-color: #f4f4f4;
+			}
+
+			#imgContainer {
+				background-image: url("bm-screenshot.png");
+				width: 1500px;
+				height: 1500px;
+				position: relative;
+
+				-ms-transform-origin: 0% 0%; /* IE 9 */
+				-webkit-transform-origin: 0% 0%; /* Chrome, Safari, Opera */
+				transform-origin: 0% 0%;
+			}
+
+			#testPin {
+				position: absolute;
+				left: 300px;
+				top: 240px;
+
+				-ms-transform-origin: 0% 100%; /* IE 9 */
+				-webkit-transform-origin: 0% 100%; /* Chrome, Safari, Opera */
+				transform-origin: 0% 100%;
+			}
+
+			#testPin2 {
+				position: absolute;
+				left: 400px;
+				top: 250px;
+
+				-ms-transform-origin: 0% 100%; /* IE 9 */
+				-webkit-transform-origin: 0% 100%; /* Chrome, Safari, Opera */
+				transform-origin: 0% 100%;
+			}
+
+			.scaled {
+				-ms-transform: scale(2,2); /* IE 9 */
+				-webkit-transform: scale(2,2); /* Chrome, Safari, Opera */
+				transform: scale(2,2);
+			}
+
+			.halfscaled {
+				-ms-transform: scale(0.5,0.5); /* IE 9 */
+				-webkit-transform: scale(0.5,0.5); /* Chrome, Safari, Opera */
+				transform: scale(0.5,0.5);
+			}			
+		</style>
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="http://sumitnsit.github.io/selection/index.js"></script>
+		<script>
+			$(document).ready(function(){
+				$("#scaleBtn").click(function(){
+					$('#imgContainer').addClass("scaled");
+					$('#testPin').addClass("halfscaled");
+					$('#testPin2').addClass("halfscaled");
+				});
+
+				$("#scaleDownBtn").click(function(){
+					$('#imgContainer').removeClass("scaled");
+					$('#testPin').removeClass("halfscaled");
+					$('#testPin2').removeClass("halfscaled");
+				});	
+
+				$("#testPin").click(function(){
+					$("#name").val(data[0].name);
+					$("#item").val(data[0].item);
+				});
+
+				$("#testPin2").click(function(){
+					$("#name").val(data[1].name);
+					$("#item").val(data[1].item);
+				});
+
+				document.addEventListener("mouseup", mouseup, false);
+				document.addEventListener("keydown", keyDown, false);
+				document.addEventListener("keyup", keyUp, false);
+
+				addDragablity($('#imgContainer').get(0));
+			});
+
+			var data = [{"name" : "Shoulder", "item" : "XYZ"}, {"name" : "Chest", "item" : "PQR"}];
+
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="imgContainer">
+				<img src="pin.png" alt="" id="testPin">
+				<img src="pin.png" alt="" id="testPin2">
+			</div>			
+		</div>
+
+		<div id="container2">
+			<input type="text" id="name" />
+			<input type="text" id="item" />
+		</div>		
+		
+		<button id="scaleBtn">Scale Up</button>
+		<button id="scaleDownBtn">Scale Down</button>
+
+	</body>
+</html>
